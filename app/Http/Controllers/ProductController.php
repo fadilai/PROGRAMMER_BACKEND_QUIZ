@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 use App\Models\Product;
 
 
@@ -27,5 +29,18 @@ class ProductController extends Controller
         ]);
 
         return response()->json(['message' => 'Product created successfully', 'product' => $product], 201);
+    }
+
+    public function destroy($id)
+    {
+        $customer = Product::find($id);
+
+        if (!$customer) {
+            return response()->json(['error' => 'Customer not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $customer->delete();
+
+        return response()->json(['message' => 'Customer deleted successfully'], Response::HTTP_OK);
     }
 }

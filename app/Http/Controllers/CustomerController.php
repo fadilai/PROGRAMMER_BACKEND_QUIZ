@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 
 class CustomerController extends Controller
@@ -25,5 +27,18 @@ class CustomerController extends Controller
         ]);
 
         return response()->json(['message' => 'Customer created successfully', 'customer' => $customer], 201);
+    }
+
+    public function destroy($id)
+    {
+        $customer = Customer::find($id);
+
+        if (!$customer) {
+            return response()->json(['error' => 'Customer not found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $customer->delete();
+
+        return response()->json(['message' => 'Customer deleted successfully'], Response::HTTP_OK);
     }
 }
