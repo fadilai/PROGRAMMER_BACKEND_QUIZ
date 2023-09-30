@@ -10,12 +10,14 @@ use Illuminate\Http\Response;
 
 class CustomerController extends Controller
 {
+    //Menampilkan data Customer
     public function index()
     {
         $customers = Customer::with('addresses')->get();
         return response()->json(['data' => $customers]);
     }
 
+    //Menyimpan data customer
     public function store(Request $request)
     {
         $request->validate([

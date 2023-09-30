@@ -10,12 +10,14 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    //Mengambil data product
     public function index()
     {
         $product = Product::all();
         return response()->json($product);
     }
 
+    //Menyimpan data product
     public function store(Request $request)
     {
         $request->validate([
@@ -31,6 +33,7 @@ class ProductController extends Controller
         return response()->json(['message' => 'Product created successfully', 'product' => $product], 201);
     }
 
+    //Menghapus data product
     public function destroy($id)
     {
         $customer = Product::find($id);
