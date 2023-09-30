@@ -18,12 +18,13 @@ use App\Http\Controllers\ProductController;
 */
 
 
-Route::get('products', [ProductController::class, 'index']);
-Route::post('products', [ProductController::class, 'store']);
-
-Route::get('customer', [CustomerController::class, 'index']);
-Route::post('customer', [CustomerController::class, 'store']);
-
+Route::prefix('/')->group(function () {
+    Route::get('products', [ProductController::class, 'index']);
+    Route::post('products', [ProductController::class, 'store']);
+    
+    Route::get('customers', [CustomerController::class, 'index']);
+    Route::post('customers', [CustomerController::class, 'store']);
+});
 
 
 
