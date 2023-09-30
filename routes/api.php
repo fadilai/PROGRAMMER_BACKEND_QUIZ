@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerAddressController;
+use App\Http\Controllers\PaymentMethodsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,10 @@ Route::prefix('/')->group(function () {
     Route::get('customer-address/{customer_id}', [CustomerAddressController::class, 'index']);
     Route::post('customer-address', [CustomerAddressController::class, 'store']);
     Route::delete('customers-address/{id}', [CustomerAddressController::class, 'destroy']);
+
+    Route::get('payment-methods', [PaymentMethodsController::class, 'index']);
+    Route::post('payment-methods', [PaymentMethodsController::class, 'store']);
+    Route::delete('payment-methods/{id}', [PaymentMethodsController::class, 'destroy']);
 
 });
 
