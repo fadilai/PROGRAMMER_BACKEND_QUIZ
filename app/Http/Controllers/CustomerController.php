@@ -10,11 +10,12 @@ use Illuminate\Http\Response;
 
 class CustomerController extends Controller
 {
-    //Menampilkan data Customer
+    
+ //Menampilkan data Customer
     public function index()
     {
-        $customers = Customer::with('addresses')->get();
-        return response()->json(['data' => $customers]);
+        $customers = Customer::all();
+        return response()->json($customers);
     }
 
     //Menyimpan data customer
@@ -42,5 +43,12 @@ class CustomerController extends Controller
         $customer->delete();
 
         return response()->json(['message' => 'Customer deleted successfully'], Response::HTTP_OK);
+    }
+
+    //Menampilkan data Customer dan customer address
+    public function gabung()
+    {
+        $customers = Customer::with('addresses')->get();
+        return response()->json(['data' => $customers]);
     }
 }
